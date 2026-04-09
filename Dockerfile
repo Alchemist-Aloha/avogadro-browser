@@ -32,4 +32,6 @@ WORKDIR /root
 # Expose noVNC port
 EXPOSE 6080
 
+COPY index.html /opt/noVNC/index.html
+
 ENTRYPOINT ["/usr/local/bin/entrypoint.sh"]
