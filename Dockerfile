@@ -29,6 +29,9 @@ COPY entrypoint.sh /usr/local/bin/entrypoint.sh
 COPY start-avogadro.sh /usr/local/bin/start-avogadro.sh
 RUN chmod +x /usr/local/bin/start-avogadro.sh
 
+# Add kiosk config for Openbox
+COPY rc.xml /etc/xdg/openbox/rc.xml
+
 # Set workdir
 WORKDIR /root
 
