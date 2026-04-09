@@ -3,9 +3,9 @@
 Run legacy Avogadro 1.2 in a Docker container and access it via your web browser.
 
 ## Available Images
-- `ghcr.io/<repo>:cpu` - Optimized for software rendering (no GPU required).
-- `ghcr.io/<repo>:gpu` - Recommended for Intel/AMD hardware (uses Mesa DRI).
-- `ghcr.io/<repo>:nvidia` - Recommended for NVIDIA hardware (requires nvidia-container-toolkit).
+- `ghcr.io/alchemist-aloha/avogadro-browser:cpu` - Optimized for software rendering (no GPU required).
+- `ghcr.io/alchemist-aloha/avogadro-browser:gpu` - Recommended for Intel/AMD hardware (uses Mesa DRI).
+- `ghcr.io/alchemist-aloha/avogadro-browser:nvidia` - Recommended for NVIDIA hardware (requires nvidia-container-toolkit).
 
 ## Quick Start
 1. Ensure Docker and Docker Compose are installed.
@@ -18,12 +18,11 @@ Run legacy Avogadro 1.2 in a Docker container and access it via your web browser
 
 ### Intel/AMD
 ```bash
-docker run -d -p 6080:6080 --device /dev/dri:/dev/dri ghcr.io/<repo>:gpu
+docker run -d -p 6080:6080 --device /dev/dri:/dev/dri ghcr.io/alchemist-aloha/avogadro-browser:gpu
 ```
-
 ### NVIDIA
 ```bash
-docker run -d -p 6080:6080 --gpus all -e NVIDIA_VISIBLE_DEVICES=all ghcr.io/<repo>:nvidia
+docker run -d -p 6080:6080 --gpus all -e NVIDIA_VISIBLE_DEVICES=all ghcr.io/alchemist-aloha/avogadro-browser:nvidia
 ```
 Ensure `nvidia-container-toolkit` is installed on your host.
 
