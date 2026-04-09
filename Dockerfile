@@ -10,7 +10,8 @@ RUN apt-get update && apt-get install -y \
     x11vnc \
     supervisor \
     git \
-    python-numpy \
+    python3 \
+    python3-numpy \
     net-tools \
     && rm -rf /var/lib/apt/lists/*
 
