@@ -1,0 +1,43 @@
+FROM ubuntu:18.04
+
+# Prevent interactive prompts during build
+ENV DEBIAN_FRONTEND=noninteractive
+
+# Install dependencies (Including Mesa DRI for Intel/AMD)
+RUN apt-get update && apt-get install -y \
+    avogadro \
+    tigervnc-standalone-server \
+    tigervnc-common \
+    supervisor \
+    git \
+    python3 \
+    python3-numpy \
+    net-tools \
+    libgl1-mesa-dri \
+    libglu1-mesa \
+    openbox \
+    wmctrl \
+    && rm -rf /var/lib/apt/lists/*
+
+# Install noVNC and websockify
+RUN git clone https://github.com/novnc/noVNC.git /opt/noVNC \
+    && git clone https://github.com/novnc/websockify.git /opt/noVNC/utils/websockify
+
+# Setup configurations
+COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
+COPY entrypoint.sh /usr/local/bin/entrypoint.sh
+COPY start-avogadro.sh /usr/local/bin/start-avogadro.sh
+RUN chmod +x /usr/local/bin/start-avogadro.sh
+
+# Add kiosk config for Openbox
+COPY rc.xml /etc/xdg/openbox/rc.xml
+
+# Set workdir
+WORKDIR /root
+
+# Expose noVNC port
+EXPOSE 6080
+
+COPY index.html /opt/noVNC/index.html
+
+ENTRYPOINT ["/usr/local/bin/entrypoint.sh"]
