@@ -7,7 +7,10 @@ ENV DEBIAN_FRONTEND=noninteractive
 RUN apt-get update && apt-get install -y \
     avogadro \
     xvfb \
-    x11vnc \
+    tigervnc-standalone-server \
+    tigervnc-common \
+    libgl1-mesa-dri \
+    libglu1-mesa \
     supervisor \
     git \
     python3 \
