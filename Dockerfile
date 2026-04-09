@@ -6,16 +6,17 @@ ENV DEBIAN_FRONTEND=noninteractive
 # Install dependencies
 RUN apt-get update && apt-get install -y \
     avogadro \
-    xvfb \
     tigervnc-standalone-server \
     tigervnc-common \
-    libgl1-mesa-dri \
-    libglu1-mesa \
     supervisor \
     git \
     python3 \
     python3-numpy \
     net-tools \
+    libgl1-mesa-dri \
+    libglu1-mesa \
+    openbox \
+    wmctrl \
     && rm -rf /var/lib/apt/lists/*
 
 # Install noVNC and websockify
@@ -25,6 +26,8 @@ RUN git clone https://github.com/novnc/noVNC.git /opt/noVNC \
 # Setup configurations
 COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 COPY entrypoint.sh /usr/local/bin/entrypoint.sh
+COPY start-avogadro.sh /usr/local/bin/start-avogadro.sh
+RUN chmod +x /usr/local/bin/start-avogadro.sh
 
 # Set workdir
 WORKDIR /root
