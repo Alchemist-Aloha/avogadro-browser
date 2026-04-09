@@ -1,4 +1,3 @@
-version: '3'
 services:
   avogadro:
     build: .
@@ -7,4 +6,18 @@ services:
       - "6080:6080"
     volumes:
       - ./molecules:/root/molecules
+    # GPU support examples:
+    # ---------------------
+    # Intel / AMD GPU:
+    # devices:
+    #   - /dev/dri:/dev/dri
+    #
+    # NVIDIA GPU:
+    # deploy:
+    #   resources:
+    #     reservations:
+    #       devices:
+    #         - driver: nvidia
+    #           count: 1
+    #           capabilities: [gpu]
     restart: always
