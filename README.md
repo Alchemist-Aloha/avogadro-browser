@@ -14,13 +14,18 @@ Run legacy Avogadro 1.2 in a Docker container and access it via your web browser
 4. Open your browser to `http://localhost:6080/`.
 5. It should automatically connect to the Avogadro VNC.
 
-## GPU Usage
+## Usage
 
-### Intel/AMD
+### CPU only
+```bash
+docker run -d -p 6080:6080 --device /dev/dri:/dev/dri ghcr.io/alchemist-aloha/avogadro-browser:cpu
+```
+
+### Intel/AMD GPU
 ```bash
 docker run -d -p 6080:6080 --device /dev/dri:/dev/dri ghcr.io/alchemist-aloha/avogadro-browser:gpu
 ```
-### NVIDIA
+### NVIDIA GPU
 ```bash
 docker run -d -p 6080:6080 --gpus all -e NVIDIA_VISIBLE_DEVICES=all ghcr.io/alchemist-aloha/avogadro-browser:nvidia
 ```
