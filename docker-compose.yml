@@ -1,0 +1,10 @@
+version: '3'
+services:
+  avogadro:
+    build: .
+    image: avogadro-browser
+    ports:
+      - "6080:6080"
+    volumes:
+      - ./molecules:/root/molecules
+    restart: always
